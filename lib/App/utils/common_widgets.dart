@@ -57,57 +57,61 @@ class ComonTextfieldWidgets extends StatelessWidget {
   final void Function(String)? onChanged;
   final bool? obscureText;
 
-  const ComonTextfieldWidgets(
-      {super.key,
-      this.controller,
-      this.hintText,
-      this.prefixIcon,
-      this.suffixIcon,
-      this.keyboardType,
-      this.validator,
-      this.onChanged,
-      this.obscureText});
+  const ComonTextfieldWidgets({
+    super.key,
+    this.controller,
+    this.hintText,
+    this.prefixIcon,
+    this.suffixIcon,
+    this.keyboardType,
+    this.validator,
+    this.onChanged,
+    this.obscureText,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller,
-      onTapOutside: (event) => FocusScope.of(context).unfocus(),
-      keyboardType: keyboardType,
-      validator: validator,
-      onChanged: onChanged,
-      obscureText: obscureText ?? false,
-      decoration: InputDecoration(
-        prefixIcon: prefixIcon, // Email icon as prefix
-        suffixIcon: suffixIcon,
-
-        hintText: hintText, // Placeholder text
-        hintStyle: const TextStyle(
+    return Container(
+      decoration: BoxDecoration(
+        color: const Color(0xffFFFFFF),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(14),
+        ),
+        border: Border.all(
+          width: 1,
+          color: const Color(0xffCFD1D1),
+        ),
+        boxShadow: const [
+          BoxShadow(
+            color: Color(0x1F000000), // #0000001F in RGBA format
+            offset: Offset(0, 1), // 0px horizontal, 1px vertical offset
+            blurRadius: 4, // 4px blur radius
+            spreadRadius: 0, // 0px spread radius
+          ),
+        ],
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: TextFormField(
+        controller: controller,
+        onTapOutside: (event) => FocusScope.of(context).unfocus(),
+        keyboardType: keyboardType,
+        validator: validator,
+        onChanged: onChanged,
+        obscureText: obscureText ?? false,
+        decoration: InputDecoration(
+          prefixIcon: prefixIcon, // Email icon as prefix
+          suffixIcon: suffixIcon,
+          hintText: hintText, // Placeholder text
+          hintStyle: const TextStyle(
             color: Colors.black45,
-            fontFamily: AppConstants.fontFamily,
+            fontFamily: 'YourFontFamily', // Replace with your actual font family
             fontSize: 14,
             fontWeight: FontWeight.w600,
-            letterSpacing: 1.5),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(50), // Border radius
-          borderSide: BorderSide(
-            color: Colors.grey[300] ?? Colors.grey, // black color border
-            width: 1.0, // Border width
+            letterSpacing: 1.5,
           ),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(50),
-          borderSide: BorderSide(
-            color: Colors.grey[300] ?? Colors.grey, // Grey color border when focused
-            width: 1.0,
-          ),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(50),
-          borderSide: BorderSide(
-            color: Colors.grey[300] ?? Colors.grey, // Grey color border when enabled
-            width: 1.0,
-          ),
+          border: InputBorder.none, // Set to InputBorder.none
+          focusedBorder: InputBorder.none, // Set to InputBorder.none
+          enabledBorder: InputBorder.none, // Set to InputBorder.none
         ),
       ),
     );

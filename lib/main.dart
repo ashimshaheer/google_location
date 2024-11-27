@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'App/modules/home/view_model/controller.dart';
-import 'App/modules/map/view_model/map_provider.dart';
-import 'App/modules/onboard/view/splash_screen.dart';
+import 'App/modules/location/view/location_screen.dart';
+import 'App/modules/location/view_model/location_provider.dart';
+import 'App/modules/location_details/view_model/datails_provider.dart';
 import 'App/utils/extentions.dart';
 
 void main() {
@@ -18,8 +18,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
-          ChangeNotifierProvider(create: ((context) => HomeController())),
-          ChangeNotifierProvider(create: ((context) => MapProvider())),
+          ChangeNotifierProvider(create: ((context) => LocationProvider())),
+          ChangeNotifierProvider(create: ((context) => DetailsProvider())),
         ],
         builder: (context, child) {
           return LayoutBuilder(
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
                   return const MaterialApp(
                     title: 'Flutter Demo',
                     debugShowCheckedModeBanner: false,
-                    home: SplashScreen(),
+                    home: LocationScreen(),
                   );
                 },
               );
